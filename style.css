@@ -1,0 +1,47 @@
+body{
+	background-color: #C7A792;
+	margin:0;
+	padding:0;
+	min-height:100vh;
+}
+
+.bg-light{
+	background-color: #E8E2D3;
+}
+
+.card-body{
+	background-color: #E8E2D3;
+}
+.navColor{
+	background-color: #484848;
+	
+}
+/* change the text color */
+#menuNavbar1 a,#menuNavbar2 a, #menuFooter a{
+	color:white !important;
+}
+
+.card{
+	background-color: #E8E2D3;
+}
+
+html { font-size: 1rem; }
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 576px) { 
+	html { font-size: .5rem; }
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { 
+	html { font-size: 1rem; }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { 
+	html { font-size: 1.25rem; }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { 
+	html { font-size: 1.5rem; } 
+}
