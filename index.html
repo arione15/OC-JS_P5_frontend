@@ -5,126 +5,106 @@
 		<!-- Required meta tags -->
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Polices de catactère -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet">
+		<!--Font Awesome-->
+		<script src="https://kit.fontawesome.com/66b1bd1b5b.js" crossorigin="anonymous"></script>
 		<!-- Bootstrap CSS -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
 			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+		<!-- Custom CSS -->
 		<link rel="stylesheet" href="style.css" />
-		   <title>ORINOCO</title>
+		   <title>ORINOCO - Le commerce autrement !</title>
 		  
 	</head>
 
 	<body>
+		<!-- header, navigation et titre -->
+		<header id="top">
 
-		<!-- Barre de Navigation-->
-		<div class="container-fluid mb-3 navColor">
-			<div class="row">
-				<nav class="col-12 col-10-md navbar navbar-expand-md navbar-dark navbar-full bg-company">
-					<a class="navbar-brand" href="index.html">
-						<img src="images/logo3.jpg" width="50" height="50" alt="Logo Orinoco" />
-					</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
-						aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div id="navbarContent" class="collapse navbar-collapse row">
-						<ul id="menuNavbar1" class="navbar-nav col-6">
-							<li class="nav-item active">
-								<a class="nav-link" href="index.html">Accueil</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="details.html">Commande</a>
-							</li>
-						</ul>
-						<ul id="menuNavbar2" class="navbar-nav col-1 offset-4">
-							<li class="nav-item">
-								<a class="nav-link" href="panier.html">Panier</a>
-							</li>
-						</ul>
+			<div class="container">
+				<!-- Barre de Navigation-->
+				<nav class="navbar navbar-expand-md fixed-top navbar-dark navColor">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="index.html"><img src="img\logo3.jpg" width="40" height="40"
+								alt="Logo Orinoco" class="offset-6" /></a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+							data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+							aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div id="navbarSupportedContent" class="collapse navbar-collapse">
+							<ul class="navbar-nav mb-2 mb-lg-0" id="menuNavbar1">
+								<li class="nav-item">
+									<a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" aria-current="page" href="details.html">Commande</a>
+								</li>
+							</ul>
+							<ul class="navbar-nav mb-2 mb-lg-0" id="menuNavbar2">
+								<li class="nav-item">
+									<a class="nav-link" aria-current="page" href="panier.html"> Panier <span
+											class="fa fa-shopping-cart">
+										</span></a>
+								</li>
+							</ul>
+
+						</div>
 					</div>
 				</nav>
-			</div>
-		</div>
-
-
-		<div class="container">
-			<!--Carroussel-->
-			<div id="carouselExampleIndicators" class="row carousel slide carousel-fade col-8 mx-auto"
-				data-bs-ride="carousel" data-pause="hover">
-				<ol class="carousel-indicators mx-auto">
-					<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-					<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-					<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
-					<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"></li>
-					<li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"></li>
-				</ol>
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="images\vcam_1.jpg" class="d-block w-100" alt="#">
-					</div>
-					<div class="carousel-item">
-						<img src="images\vcam_2.jpg" class="d-block w-100" alt="#">
-					</div>
-					<div class="carousel-item">
-						<img src="images\vcam_3.jpg" class="d-block w-100" alt="#">
-					</div>
-					<div class="carousel-item">
-						<img src="images\vcam_4.jpg" class="d-block w-100" alt="#">
-					</div>
-					<div class="carousel-item">
-						<img src="images\vcam_5.jpg" class="d-block w-100" alt="#">
-					</div>
+				<!--h1-->
+				<div class="row">
+					<h1 class="h1 my-5 py-5 text-center">Appareils disponibles en stock</h1>
 				</div>
-				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</a>
-				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</a>
 			</div>
-			<!--Fin Carroussel-->
+		</header>
 
-			<!--h1-->
-			<div class="row mb-3">
-				<h1 class="col-10 offset-2 mt-5">Appareils disponibles en stock</h1>
-			</div>
-
+		<!-- main -->
+		<main>
 			<!-- Les Cards -->
-			<div class="row mb-5">
-				<div class="col-12 col-md-6 col-lg-3 mx-auto">
-					<div id="wrapper" class="card mb-4 mb-lg-0 border-light shadow-sm"></div>
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<table class="table">
+							<tr id="wrapper" class="row justify-content-center">
+							</tr>
+						</table>
+					</div>
 				</div>
 			</div>
-		</div>
 
-
-
+		</main>
 
 		<!--Le footer-->
-		<div class="container-fluid">
-			<div class="row mb-3 navColor">
-				<nav class="col-12 col-10-lg navbar navbar-expand-md navbar-dark navbar-full bg-company">
-					<ul id="menuFooter" class="footer navbar-nav mx-auto">
-						<li class="nav-item active">
-							<a class="nav-link" href="#">À propos</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Mentions légales</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#">Conditions d'utilisations</a>
-						</li>
-					</ul>
-				</nav>
+		<footer>
+			<div class="container-fluid">
+				<div class="row mb-3 navColor">
+					<nav class="col-12 col-10-lg navbar navbar-expand-md navbar-dark navbar-full bg-company">
+						<ul id="menuFooter" class="footer navbar-nav mx-auto">
+							<li class="nav-item active">
+								<a class="nav-link" href="#">À propos</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Mentions légales</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Conditions d'utilisations</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
 			</div>
-		</div>
+		</footer>
+
+		<!-- Bootstrap JS -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
 			integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
 			crossorigin="anonymous"></script>
-
-
-		<!-- il faut inclure le fichier "index.js" dans "index.html" -->
+		<!-- Custom JS -->
 		<script src="index.js" charset="utf-8"></script>
 	</body>
 
