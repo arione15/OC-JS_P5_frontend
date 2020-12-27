@@ -1,126 +1,155 @@
 <!doctype html>
 <html lang="fr">
 
-<head>   
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css" />
-       <title>ORINOCO</title>
-      
-</head>
+	<head>   
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Polices de catactère -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet">
+		<!--Font Awesome-->
+		<script src="https://kit.fontawesome.com/66b1bd1b5b.js" crossorigin="anonymous"></script>
+		<!-- Bootstrap CSS -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+			integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="style.css" />
+		   <title>VIntage Camera's Cart</title>
+	</head>
 
-<body>
+	<body>
 
-    <!-- Barre de Navigation-->
-    <div class="container-fluid mb-3 navColor">
-        <div class="row">
-            <nav class="col-12 col-10-md navbar navbar-expand-md navbar-dark navbar-full bg-company">
-                <a class="navbar-brand" href="index.html">
-                    <img src="images/logo3.jpg" width="50" height="50" alt="Logo Orinoco" />
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div id="navbarContent" class="collapse navbar-collapse row">
-                    <ul id="menuNavbar1" class="navbar-nav col-6">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.html">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="details.html">Commande</a>
-                        </li>
-                    </ul>
-                    <ul id="menuNavbar2" class="navbar-nav col-1 offset-4">
-                        <li class="nav-item">
-                            <a class="nav-link" href="panier.html">Panier</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </div>
+		<!-- Barre de Navigation-->
+		<div class="container-fluid mb-3 navColor">
+			<div class="row">
+				<nav class="col-12 col-10-md navbar navbar-expand-md navbar-dark navbar-full bg-company">
+					<a class="navbar-brand" href="index.html">
+						<img src="img\logo3.jpg" width="50" height="50" alt="Logo Orinoco" />
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+						aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div id="navbarContent" class="collapse navbar-collapse row">
+						<ul id="menuNavbar1" class="navbar-nav col-6">
+							<li class="nav-item active">
+								<a class="nav-link" href="index.html">Accueil</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="details.html">Commande</a>
+							</li>
+						</ul>
+						<ul id="menuNavbar2" class="navbar-nav col-1 offset-4">
+							<li class="nav-item">
+								<a class="nav-link" href="panier.html">Panier</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</div>
 
+		<div class="container">
+			<div class="row">
+				<form id="myForm" class="col-12 col-md-6 col-lg-4">
+					<h3>Vos coordonnées</h3>
+					<div class="form-group col-10">
+						<label for="prenom">Prénom :</label>
+						<input type="text" class="form-control card mb-3" id="prenom">
+					</div>
+					<div class="form-group col-10">
+						<label for="nom">Nom :</label>
+						<input type="text" class="form-control card mb-3" id="nom">
+					</div>
+					<div class="form-group col-10">
+						<label for="adresse">Adresse :</label>
+						<input type="text" class="form-control card mb-3" id="adresse">
+					</div>
+					<div class="form-group col-10">
+						<label for="ville">Ville :</label>
+						<input type="text" class="form-control card mb-3" id="ville">
+					</div>
+					<div class="form-group col-10">
+						<label for="email">Email :</label>
+						<input type="email" class="form-control card mb-3" id="email">
+					</div>
+					<div class="form-group col-10">
+						<input class="btn btn-warning mt-4 mb-5 col-4 col-md-8 col-lg-12" type="submit"
+							value="Confirmer votre achat">
+					</div>
+				</form>
 
-    <div class="container">
+				<!-- Les Cards -->
 
+				<div class="col-12 col-md-6 col-lg-8">
 
-        <!--h1-->
-        <div class="row mb-3">
-            <h1 class="col-10 offset-2 mt-5">Panier</h1>
-            <h2 class="col-10 offset-2 mt-5" id="total"></h2>
+					<h3>Votre commande</h3>
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th>Produit</th>
+								<th>modèle</th>
+								<th>prix</th>
+								<th>quantité</th>
+								<th>Sous-total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td id="wrapper"></td>
+								<td id="lentilleUnitaire"></td>
+								<td id="prixUnitaire"></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="4" class="font-italic font-weight-bold text-uppercase text-right">Total
+								</td>
+								<td><span id="total"></span></td>
+							</tr>
+						</tbody>
+						<tfoot></tfoot>
 
-            <form id="myForm">
+					</table>
 
-                <div class="form-group">
-                    <label for="prenom">Prénom:</label>
-                    <input type="text" class="form-control" id="prenom">
-                </div>
-                <div class="form-group">
-                    <label for="nom">Nom:</label>
-                    <input type="text" class="form-control" id="nom">
-                </div>
-                <div class="form-group">
-                    <label for="adresse">Adresse:</label>
-                    <input type="text" class="form-control" id="adresse">
-                </div>
-                <div class="form-group">
-                    <label for="ville">Ville:</label>
-                    <input type="text" class="form-control" id="ville">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" class="form-control" id="email">
-                </div>
-
-                <input class="btn btn-dark" type="submit" value="Confirmer">
-                
-            </form>
-
-        </div>
-
-
-        <!-- Les Cards -->
-        <div class="row mb-5">
-            <div class="col-12 col-md-6 col-lg-3 mx-auto">
-                <div id="wrapper" class="card mb-4 mb-lg-0 border-light shadow-sm"></div>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <!--Le footer-->
-    <div class="container-fluid">
-        <div class="row mb-3 navColor">
-            <nav class="col-12 col-10-lg navbar navbar-expand-md navbar-dark navbar-full bg-company">
-                <ul id="menuFooter" class="footer navbar-nav mx-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">À propos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Mentions légales</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Conditions d'utilisations</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
+				</div>
+			</div>
+		</div>
 
 
-    <script src="panier.js" charset="utf-8"></script>
 
-    <link href="index.js" />
-</body>
+
+		<!--Le footer-->
+		<footer>
+			<div class="container-fluid">
+				<div class="row mb-3 navColor">
+					<nav class="col-12 col-10-lg navbar navbar-expand-md navbar-dark navbar-full bg-company">
+						<ul id="menuFooter" class="footer navbar-nav mx-auto">
+							<li class="nav-item active">
+								<a class="nav-link" href="#">À propos</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Mentions légales</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="#">Conditions d'utilisations</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</footer>
+
+		<!-- Bootstrap JS -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+			crossorigin="anonymous"></script>
+		<!-- Custom JS -->
+		<script src="panier.js" charset="utf-8"></script>
+
+	</body>
 
 </html>
