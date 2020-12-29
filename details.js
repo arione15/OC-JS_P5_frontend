@@ -17,17 +17,15 @@ console.log(id)
 
 
  /* construction d'un objet cameraAdded contenat l'id et la lentille de la caméra */
- let cameraAddedTable = [] /* pas const cameraAddedTable*/ 
+let cameraAddedTable = [] /* pas const cameraAddedTable*/ 
 let i=0
 function ajouter(){
    
-    const lensModel = document.querySelector('#liste').value
-    console.log(lensModel)
+    const cameraAdded = document.querySelector('#liste').value
+     //faire un test pour dire au user de faire un choix
 /* localStorage.setItem('bgcolor', document.getElementById('bgcolor').value); */
-    const cameraAdded = {
-           id:id,
-           lentille:lensModel
-       }
+   
+       
        //console.log(cameraAdded) 
        //console.log('typeof cameraAdded: ' + typeof cameraAdded)
        //let cameraAddedTableLength = cameraAddedTable.push(cameraAdded) // cameraAddedTable.push("cameraAdded") retourn un entier !!!!
@@ -36,9 +34,9 @@ function ajouter(){
        //console.log(cameraAdded) 
        
        // pbme si je retourne pour ajouter un autre modele avec un id différent, l'ancien ajout est perdu !!!! localStorage.setItem(cameraAddedTable, cameraAddedTable) ou localStorage.setItem(cameraAdded, cameraAdded) n'a pas résolu le pbme !!!! Le pbme a été résolu en utilisant getItem, push et setItem dans cet ordre avec 
-       let cameraAddedTable = JSON.parse(localStorage.getItem(id)) || []; // comme ça ca ne l'écrase pas
+       let cameraAddedTable = JSON.parse(localStorage.getItem(id)) || [] // comme ça ca ne l'écrase pas. Mettre getItem(cameraAdded) est mieux je pense que getItem(id) A VERIFIER
        cameraAddedTable.push(cameraAdded)
-       localStorage.setItem(id, JSON.stringify(cameraAddedTable));
+       localStorage.setItem(id, JSON.stringify(cameraAddedTable)); // c'était setItem(id, JSON.stringify(cameraAddedTable))
 
        //localStorage.setItem(JSON.stringify(cameraAddedTable), JSON.stringify(cameraAddedTable))
     
@@ -76,8 +74,8 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
         <h6 class="card-title">Prix : ${respJson.price/100} €</h6>
         <p class="card-text">${respJson.description}</p>
 
-        <select id="liste" class="form-select mb-3" aria-label="Default select example">
-			<option selected>Type de lentilles</option>
+        <select required id="liste" class="form-select mb-3" aria-label="Default select example">
+			<option value="" disabled="disabled" selected="selected">--- choisissez la lentilles</option>
 			${respJson.lenses.map(x_lentille => `<option value="${x_lentille}">${x_lentille}</option>`)}
 		</select>
 		<input onclick=ajouter() type="submit" value="Ajouter au panier" class="btn btn-primary"/>

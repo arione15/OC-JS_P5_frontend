@@ -7,7 +7,7 @@ fetch(`http://localhost:3000/api/cameras`)
 	.then(respJson => {
 		console.log(respJson)
 		let output = ''
-		const elementParent = document.querySelector('#wrapper')
+		const elementParent = document.querySelector('#wrapper') // on défini l'élément parent puis on établie les élémént enfants contenant les paramètres 
 		respJson.forEach(camera => {
 			console.log('typeof camera: ' + typeof camera);
 
@@ -19,7 +19,7 @@ fetch(`http://localhost:3000/api/cameras`)
 							<h6 class="card-title">Lentille(s) disponible(s) : ${camera.lenses.length}</h6>
 								<p class="card-text pIndex">${camera.description}</p>
 						</div></td>`
-			elementParent.innerHTML = output
+			elementParent.innerHTML = output // enfin, on injecte les eélémnts enfants dans le parent
 		})
 	})
 

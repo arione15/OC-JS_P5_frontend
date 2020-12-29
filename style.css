@@ -71,7 +71,7 @@ html { font-size: 1rem; }
 
 .table td{
 	background-color: #E8E2D3;
-	border-radius: 20px;
+	/*border-radius: 20px;*/
 }
 
 /* Pour tronquer le texte descriptif des articles de la pages d'accueil */
@@ -97,3 +97,17 @@ text-overflow: ellipsis;
 	border-color:  #6c949f !important;
 }
 
+/* Panier*/
+.text-right {
+	text-align: right;
+}
+
+.sum{
+font-weight: 700;
+text-align: right;
+}
+#total{
+	font-weight: 700;
+	text-align: right;
+
+}

@@ -22,105 +22,105 @@
 
 	<body>
 
-		<!-- Barre de Navigation-->
-		<div class="container-fluid mb-3 navColor">
-			<div class="row">
-				<nav class="col-12 col-10-md navbar navbar-expand-md navbar-dark navbar-full bg-company">
-					<a class="navbar-brand" href="index.html">
-						<img src="img\logo3.jpg" width="50" height="50" alt="Logo Orinoco" />
-					</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
-						aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div id="navbarContent" class="collapse navbar-collapse row">
-						<ul id="menuNavbar1" class="navbar-nav col-6">
-							<li class="nav-item active">
-								<a class="nav-link" href="index.html">Accueil</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="details.html">Commande</a>
-							</li>
-						</ul>
-						<ul id="menuNavbar2" class="navbar-nav col-1 offset-4">
-							<li class="nav-item">
-								<a class="nav-link" href="panier.html">Panier</a>
-							</li>
-						</ul>
+		<!-- header, navigation et titre -->
+		<header id="top">
+
+			<div class="container">
+				<!-- Barre de Navigation-->
+				<nav class="navbar navbar-expand-md fixed-top navbar-dark navColor">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="index.html"><img src="img\logo.png" width="60" height="40"
+								alt="Logo Orinoco" class="offset-6 rounded-circle" /></a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+							data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+							aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div id="navbarSupportedContent" class="collapse navbar-collapse">
+							<ul class="navbar-nav mb-2 mb-lg-0" id="menuNavbar1">
+								<li class="nav-item">
+									<a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" aria-current="page" href="details.html">Commande</a>
+								</li>
+							</ul>
+							<ul class="navbar-nav mb-2 mb-lg-0" id="menuNavbar2">
+								<li class="nav-item">
+									<a class="nav-link" aria-current="page" href="panier.html"> Panier <span
+											class="fa fa-shopping-cart">
+										</span></a>
+								</li>
+							</ul>
+
+						</div>
 					</div>
 				</nav>
 			</div>
-		</div>
+		</header>
 
-		<div class="container">
-			<div class="row">
-				<form id="myForm" class="col-12 col-md-6 col-lg-4">
-					<h3>Vos coordonnées</h3>
-					<div class="form-group col-10">
-						<label for="prenom">Prénom :</label>
-						<input type="text" class="form-control card mb-3" id="prenom">
-					</div>
-					<div class="form-group col-10">
-						<label for="nom">Nom :</label>
-						<input type="text" class="form-control card mb-3" id="nom">
-					</div>
-					<div class="form-group col-10">
-						<label for="adresse">Adresse :</label>
-						<input type="text" class="form-control card mb-3" id="adresse">
-					</div>
-					<div class="form-group col-10">
-						<label for="ville">Ville :</label>
-						<input type="text" class="form-control card mb-3" id="ville">
-					</div>
-					<div class="form-group col-10">
-						<label for="email">Email :</label>
-						<input type="email" class="form-control card mb-3" id="email">
-					</div>
-					<div class="form-group col-10">
-						<input class="btn btn-warning mt-4 mb-5 col-4 col-md-8 col-lg-12" type="submit"
-							value="Confirmer votre achat">
-					</div>
-				</form>
+		<!-- main -->
+		<main>
+			<div class="container">
+				<div class="row my-5 py-5">
+					<form id="myForm" class="col-12 col-md-6 col-lg-4">
+						<h3>Vos coordonnées</h3>
+						<div class="form-group col-10">
+							<label for="prenom">Prénom :</label>
+							<input type="text" class="form-control card mb-3" id="prenom">
+						</div>
+						<div class="form-group col-10">
+							<label for="nom">Nom :</label>
+							<input type="text" class="form-control card mb-3" id="nom">
+						</div>
+						<div class="form-group col-10">
+							<label for="adresse">Adresse :</label>
+							<input type="text" class="form-control card mb-3" id="adresse">
+						</div>
+						<div class="form-group col-10">
+							<label for="ville">Ville :</label>
+							<input type="text" class="form-control card mb-3" id="ville">
+						</div>
+						<div class="form-group col-10">
+							<label for="email">Email :</label>
+							<input type="email" class="form-control card mb-3" id="email">
+						</div>
+						<div class="form-group col-10">
+							<input class="btn btn-warning mt-4 mb-5 col-4 col-md-8 col-lg-12" type="submit"
+								value="Confirmer votre achat">
+						</div>
+					</form>
 
-				<!-- Les Cards -->
+					<!-- Les Cards -->
+					<div class="col-12 col-md-6 col-lg-8">
 
-				<div class="col-12 col-md-6 col-lg-8">
+						<h3>Votre commande</h3>
+						<table class="table table-bordered">
+							<thead>
+								<tr class="text-nowrap">
+									<th>Produit</th>
+									<th>modèle</th>
+									<th>lentille</th>
+									<th>prix</th>
+									<th>quantité</th>
+									<th>Sous-total</th>
+								</tr>
+							</thead>
+							<tbody id="wrapper"></tbody>
+							<tfoot></tfoot>
+						</table>
 
-					<h3>Votre commande</h3>
-					<table class="table table-bordered">
-						<thead>
+						<table class="table table-bordered">
 							<tr>
-								<th>Produit</th>
-								<th>modèle</th>
-								<th>prix</th>
-								<th>quantité</th>
-								<th>Sous-total</th>
+								<td class="sum">Total :</td>
+								<td id="total"></td>
 							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td id="wrapper"></td>
-								<td id="lentilleUnitaire"></td>
-								<td id="prixUnitaire"></td>
-								<td></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td colspan="4" class="font-italic font-weight-bold text-uppercase text-right">Total
-								</td>
-								<td><span id="total"></span></td>
-							</tr>
-						</tbody>
-						<tfoot></tfoot>
+						</table>
 
-					</table>
-
+					</div>
 				</div>
 			</div>
-		</div>
-
-
-
+		</main>
 
 		<!--Le footer-->
 		<footer>

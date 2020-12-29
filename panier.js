@@ -1,53 +1,59 @@
-let panier = [] //contient les cameras ajoutées au panier
-let products = [] //contient les couples identifiant/lentille des cameras à commander. Un tableau d'objets ???
+let panier = [] //contient les infos correspondant à l'id de la camera ajoutée au panier (même si on n'a choisi qu'une seule lentille, ca récupère toutes les infos de la camera qui a cet id pas uniquement la lentille selectionnée !!)
+let products = [] //contient les couples id/lentille (défini par cameraAdded) des cameras selelctionnées.
+let sousTotal = []
 let total = 0
+let quantite = []
+let values = []
 
 /** Parcourir tous les couples identifiant/lentille stockés dans le navigateur */
-for (let i = 0; i < localStorage.length; i++) { 
-    let id = JSON.stringify(localStorage.key(i)) /* Récupère les couples identifiant/lentille */
-console.log(JSOPN.parse(id))
-        fetch(`http://localhost:3000/api/cameras/${id}`)
-            .then(resp => {
-                console.log(resp)
-                return resp.json()
+let panierLengthParId = localStorage.length
+console.log(panierLengthParId) // donne le nombre d'id différents (voir le setItem du localStorage) même si un id contient +ieurs lentilles ca ne compte que 1. Il faut donc aussi boucler sur le nbre de lentilles de chaque id. Car le fetch nous renvoi toutes les infos, contenu dans l'API, de l'id concerné
+
+for (let i = 0; i < panierLengthParId; i++) {
+    let id = localStorage.key(i) /* Récupère les id car le key de notre localStorage est id */
+    let valuesId = JSON.parse(localStorage.getItem(id)) // récupère la VALUE correspondante à la KEY id : ici la VALUE est un tableau contenant les couples id/lentille (voir localStorage.setItem)
+    console.log(valuesId);
+    values.push(valuesId)
+    console.log(values)
+    quantite.push(valuesId.length)
+
+    fetch(`http://localhost:3000/api/cameras/${id}`) // car besoin des infos de l'api pour, UIQUEMENT, l'image, le descriptif et le prix !!!
+        .then(resp => {
+            //console.log(resp)
+            return resp.json()
+        })
+        .then(respJson => {
+            console.log(respJson) // affiche les infos de chaque respJson donc ici de chaque id un par un pas comme lorsqu'on utilise push 
+            panier.push(respJson) //stocker les réponses dans la liste "panier"
+            console.log(panier) // affiche les infos de tout les id (boucle sur i complète)
+
+            products.push(id) //
+            console.log(products) // affiche les infos de tout le products (boucle sur i complète)
+            console.log(products.length) // ca affiche 1 puis 2 puis 3 ????? car à chaque itération il rajoute la même chose, le même shémas !!!
+
+            let output = ''
+            const elementParent = document.querySelector('#wrapper')
+            const elementTotal = document.querySelector('#total')
+
+            output += panier.map((camera, x) => {
+                return (`
+                    <tr>
+                    <td id="photoUnitaire"><a href="details.html?id=${camera._id}"><img src="${camera.imageUrl}" alt="#" class="card-img-top">
+                    </a></td>
+                    <td id="modele">${camera.name}</td>
+                    <td id="lentilleUnitaire">${values[x]}</td>
+                    <td id="prixUnitaire">${camera.price/100} €</td>
+                    <td id="quantite">${quantite[x]}</td>
+                    <td id="sousTotal">${quantite[x] * camera.price/100} €</td>
+                    </tr>
+                    `)
             })
-            .then(respJson => {
-                console.log(respJson)
-                panier.push(respJson) //stocker les réponses dans la liste "panier"
-                console.log(panier);
 
-                products.push(panier[i]._id) //stocker les identifiants des cameras à commander dans la liste "products"
-                /** Comment stocker le couple id/lense ???? */
-                console.log(products);
-
-                total = total + panier[i].price //calculer le total
-
-                let output = ''
-				const elementParent = document.querySelector('#wrapper')
-				const elementTotal = document.querySelector('#total')
-				const elementLentille = document.querySelector('#lentilleUnitaire')
-				const elementPrixUnitaire = document.querySelector('#prixUnitaire')
-
-                for (let j = 0; j < panier.length; j++) {
-                    output += `<a href="details.html?id=${panier[j]._id}"><img src="${panier[j].imageUrl}" alt="#" class="card-img-top">
-                            </a>`
-							elementLentille.innerHTML = panier[j].lenses
-							elementPrixUnitaire.innerHTML = panier[j].price/100 + " €"
-
-							/*
-							<div class="card-body">
-								<h5 class="card-title">Nom : ${panier[j].name}</h5>
-								<h7 class="card-title">Lentille : ${panier[j].lenses}</h7>
-                                <h6 class="card-title">Prix : ${panier[j].price/100} €</h6>
-							</div>
-							*/
-								/*divCard.innerHTML = output
-							elementParent.innerHTML = divCard*/
-                }
-                elementParent.innerHTML = output
-				elementTotal.innerHTML = total/100 + " €"
-				
-            })
+            sousTotal = panier.map((camera,x) => camera.price * quantite[x])
+            total = sousTotal.reduce((acc, curr) => acc + curr)
+            elementParent.innerHTML = output
+            elementTotal.innerHTML = total + " €"
+        })
 }
 
 //Envoyer le formulaire de confirmation
@@ -87,13 +93,13 @@ function Confirmer(e) {
             console.log(json)
 
             //stocker les variables "orderId" et "total" pour les utiliser dans la page "confirmation.html" 
-            localStorage.setItem("orderId", json.orderId) 
-            localStorage.setItem("total", total) 
+            localStorage.setItem("orderId", json.orderId)
+            localStorage.setItem("total", total)
 
             //redériger l'utilisateur vers la page "confirmation.html" après la confirmation de la commande
-			window.location = "confirmation.html"
-			// var adresseActuelle = window.location;
- 			// window.location = nouvelleAdresse;
+            window.location = "confirmation.html"
+            // var adresseActuelle = window.location;
+            // window.location = nouvelleAdresse;
         })
         .catch(err => console.log(err))
 }
