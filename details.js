@@ -54,8 +54,6 @@ function ajouter(){
 /* autres syntaxes : localStorage[id] = id; ou encore localStorage.id = id; */
 }
 
-
-
 /* on passe l'identifiant de la camera obtenu à l'api */
 fetch(`http://localhost:3000/api/cameras/${id}`)
     .then(resp => {
@@ -87,11 +85,5 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
 		/* 
 		<p id="demo" onclick="myFunction()">Click me.</p> ou bien : document.getElementById("demo").onclick = function() {myFunction()}; ou encore : document.getElementById("demo").addEventListener("click", myFunction);
         */
-       
         elementParent.innerHTML = output
-       //const lensModel = document.querySelector('#liste').value
-       // console.log(lensModel)  
-     //return lentille
-     
-
     })
