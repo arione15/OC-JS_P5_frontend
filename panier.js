@@ -16,6 +16,9 @@ for (let i = 0; i < panierLengthParId; i++) {
     values.push(valuesId)
     console.log(values)
     quantite.push(valuesId.length)
+    console.log(quantite)
+    console.log(typeof quantite)
+
 
     fetch(`http://localhost:3000/api/cameras/${id}`) // car besoin des infos de l'api pour, UIQUEMENT, l'image, le descriptif et le prix !!!
         .then(resp => {
@@ -36,6 +39,7 @@ for (let i = 0; i < panierLengthParId; i++) {
             const elementTotal = document.querySelector('#total')
 
             output += panier.map((camera, x) => {
+                console.log(camera)
                 return (`
                     <tr>
                     <td id="photoUnitaire"><a href="details.html?id=${camera._id}"><img src="${camera.imageUrl}" alt="#" class="card-img-top">
@@ -52,7 +56,7 @@ for (let i = 0; i < panierLengthParId; i++) {
             sousTotal = panier.map((camera,x) => camera.price * quantite[x])
             total = sousTotal.reduce((acc, curr) => acc + curr)
             elementParent.innerHTML = output
-            elementTotal.innerHTML = total + " €"
+            elementTotal.innerHTML = total/100 + " €"
         })
 }
 

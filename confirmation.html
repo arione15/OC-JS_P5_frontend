@@ -21,50 +21,54 @@
 	</head>
 
 	<body>
+		<!-- header, navigation et titre -->
+		<header id="top">
 
-		<!-- Barre de Navigation-->
-		<div class="container-fluid mb-3 navColor">
-			<div class="row">
-				<nav class="col-12 col-10-md navbar navbar-expand-md navbar-dark navbar-full bg-company">
-					<a class="navbar-brand" href="index.html">
-						<img src="img\logo.png" width="60" height="40"
-						alt="Logo Orinoco" class="offset-6 rounded-circle"/>
-					</a>
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
-						aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div id="navbarContent" class="collapse navbar-collapse row">
-						<ul id="menuNavbar1" class="navbar-nav col-6">
-							<li class="nav-item active">
-								<a class="nav-link" href="index.html">Accueil</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="details.html">Commande</a>
-							</li>
-						</ul>
-						<ul id="menuNavbar2" class="navbar-nav col-1 offset-4">
-							<li class="nav-item">
-								<a class="nav-link" href="panier.html">Panier</a>
-							</li>
-						</ul>
+			<div class="container">
+				<!-- Barre de Navigation-->
+				<nav class="navbar navbar-expand-md fixed-top navbar-dark navColor">
+					<div class="container-fluid">
+						<a class="navbar-brand" href="index.html"><img src="img\logo.png" width="60" height="40"
+								alt="Logo Orinoco" class="offset-6 rounded-circle" /></a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+							data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+							aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div id="navbarSupportedContent" class="collapse navbar-collapse">
+							<ul class="navbar-nav mb-2 mb-lg-0" id="menuNavbar1">
+								<li class="nav-item">
+									<a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" aria-current="page" href="details.html">Commande</a>
+								</li>
+							</ul>
+							<ul class="navbar-nav mb-2 mb-lg-0" id="menuNavbar2">
+								<li class="nav-item">
+									<a class="nav-link" aria-current="page" href="panier.html"> Panier <span
+											class="fa fa-shopping-cart">
+										</span></a>
+								</li>
+							</ul>
+
+						</div>
 					</div>
 				</nav>
 			</div>
-		</div>
+		</header>
 
-
-		<div class="container">
-
-			<!--h1-->
-			<div class="row mb-3">
-				<h1 class="col-10 offset-2 mt-5">Merci pour votre achat !</h1>
-				<h2 class="col-10 offset-2 mt-5" id="total"></h2>
-				<h6 class="col-10 offset-2 mt-5" id="orderId"></h6>
+		<!-- main -->
+		<main>
+			<div class="container">
+				<!--h1-->
+				<div class="row mb-3">
+					<h1 class="col-10 offset-2 mt-5">Merci pour votre achat !</h1>
+					<h2 class="col-10 offset-2 mt-5" id="total"></h2>
+					<h6 class="col-10 offset-2 mt-5" id="orderId"></h6>
+				</div>
 			</div>
-
-		</div>
-
+		</main>
 
 
 
