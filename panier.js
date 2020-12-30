@@ -16,9 +16,6 @@ for (let i = 0; i < panierLengthParId; i++) {
     values.push(valuesId)
     console.log(values)
     quantite.push(valuesId.length)
-    console.log(quantite)
-    console.log(typeof quantite)
-
 
     fetch(`http://localhost:3000/api/cameras/${id}`) // car besoin des infos de l'api pour, UIQUEMENT, l'image, le descriptif et le prix !!!
         .then(resp => {
@@ -39,16 +36,15 @@ for (let i = 0; i < panierLengthParId; i++) {
             const elementTotal = document.querySelector('#total')
 
             output += panier.map((camera, x) => {
-                console.log(camera)
                 return (`
                     <tr>
                     <td id="photoUnitaire"><a href="details.html?id=${camera._id}"><img src="${camera.imageUrl}" alt="#" class="card-img-top">
                     </a></td>
                     <td id="modele">${camera.name}</td>
                     <td id="lentilleUnitaire">${values[x]}</td>
-                    <td id="prixUnitaire">${camera.price/100} €</td>
+                    <td id="prixUnitaire">${camera.price/100}</td>
                     <td id="quantite">${quantite[x]}</td>
-                    <td id="sousTotal">${quantite[x] * camera.price/100} €</td>
+                    <td id="sousTotal">${quantite[x] * camera.price/100}</td>
                     </tr>
                     `)
             })
@@ -61,19 +57,55 @@ for (let i = 0; i < panierLengthParId; i++) {
 }
 
 //Envoyer le formulaire de confirmation
-document.getElementById("myForm").addEventListener("submit", Confirmer) //ajouter un event listener pour le formulaire
+const myFormElement = document.getElementById("myForm")
+myFormElement.addEventListener("submit", Confirmer) //ajouter un event listener pour le formulaire
+console.log(50)
 
 // cette fonction permet d'envoyer le formulaire vers le serveur
 function Confirmer(e) {
     e.preventDefault() //utiliser toujours cette fonction avec les formulaires pour empecher le navigateur de recharger la page lors de l'envoi du formulaire
-
     //obtenir les données du formulaire
     let firstName = document.getElementById("prenom").value
     let lastName = document.getElementById("nom").value
     let city = document.getElementById("ville").value
     let address = document.getElementById("adresse").value
     let email = document.getElementById("email").value
+    
+    //let prenomElement = document.getElementById("prenom")
+    let prenom_m = document.getElementById("prenom_manquant")
 
+    //let nomElement = document.getElementById("nom")
+    let nom_m = document.getElementById("nom_manquant")
+
+    //let adressElement = document.getElementById("adresse")
+    let adress_m = document.getElementById("adresse_manquant")
+
+    //let cityElement = document.getElementById("ville")
+    let city_m = document.getElementById("ville_manquant")
+
+    //let emailElement = document.getElementById("nom")
+    let email_m = document.getElementById("email_manquant")
+    let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    if (firstName === ""){
+        prenom_m.innerHTML="Veuillez renseigner le Prénom !"
+        prenom_m.style.color = "red"
+    } else if (lastName === ""){
+        nom_m.innerHTML="Veuillez renseigner le Nom !"
+        nom_m.style.color = "red"
+    } else if(address === "") {
+        adress_m.innerHTML="Veuillez renseigner l'adresse !"
+        adress_m.style.color = "red"
+    }else if (city === "") {
+        city_m.innerHTML="Veuillez renseigner la ville !"
+        city_m.style.color = "red"
+    } else if(email === "" || email.match(regex) === null) {
+        email_m.innerHTML="Veuillez renseigner une adresse mail valide !"
+        email_m.style.color = "red"
+    } else {
+        firstName.trim()
+        lastName.trim()
+        console.log(200)
     //créer l'objet "contact" contenant les données du formulaire
     let contact = {
         firstName,
@@ -106,6 +138,7 @@ function Confirmer(e) {
             // window.location = nouvelleAdresse;
         })
         .catch(err => console.log(err))
+    }
 }
 
 

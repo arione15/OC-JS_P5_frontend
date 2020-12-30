@@ -22,4 +22,6 @@ fetch(`http://localhost:3000/api/cameras`)
 			elementParent.innerHTML = output // enfin, on injecte les eélémnts enfants dans le parent
 		})
 	})
+	.catch(err => console.log('Request Failed', err))
 
+	

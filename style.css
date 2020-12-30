@@ -55,7 +55,7 @@ html { font-size: 1rem; }
 }
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) { 
-	html { font-size: 1rem; }
+	html { font-size: .75rem; }
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -71,11 +71,7 @@ html { font-size: 1rem; }
 
 .table td{
 	background-color: #E8E2D3;
-<<<<<<< HEAD
 	/*border-radius: 20px;*/
-=======
-	border-radius: 20px;
->>>>>>> c926c1f1f87ccb8c824086a2ed2c73abfdc75b05
 }
 
 /* Pour tronquer le texte descriptif des articles de la pages d'accueil */
@@ -101,7 +97,6 @@ text-overflow: ellipsis;
 	border-color:  #6c949f !important;
 }
 
-<<<<<<< HEAD
 /* Panier*/
 .text-right {
 	text-align: right;
@@ -116,5 +111,3 @@ text-align: right;
 	text-align: right;
 
 }
-=======
->>>>>>> c926c1f1f87ccb8c824086a2ed2c73abfdc75b05

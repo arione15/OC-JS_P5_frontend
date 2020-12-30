@@ -67,17 +67,19 @@ fetch(`http://localhost:3000/api/cameras/${id}`)
         const elementParent = document.querySelector('#wrapper')
         output += `<img src="${respJson.imageUrl}" alt="#"
             class="card-img-top rounded-pill p-3">
-    <div class="card-body">
+    <div class="card-body text-center">
         <h5 class="card-title">Nom : ${respJson.name}</h5>
         <h6 class="card-title">Prix : ${respJson.price/100} €</h6>
         <p class="card-text">${respJson.description}</p>
-
+  
         <select required id="liste" class="form-select mb-3" aria-label="Default select example">
 			<option value="" disabled="disabled" selected="selected">--- choisissez la lentilles</option>
 			${respJson.lenses.map(x_lentille => `<option value="${x_lentille}">${x_lentille}</option>`)}
-		</select>
-		<input onclick=ajouter() type="submit" value="Ajouter au panier" class="btn btn-primary"/>
-    </div>`
+        </select>
+        <input onclick=ajouter() type="submit" value="Ajouter au panier" class="btn btn-primary"/>
+        </div>
+		
+    `
    
 		/*for(let i=0; i<respJson.lenses.length; i++){
 			<option value="2">${respJson.lenses[i]}</option>

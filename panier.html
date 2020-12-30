@@ -65,29 +65,35 @@
 				<div class="row my-5 py-5">
 					<form id="myForm" class="col-12 col-md-6 col-lg-4">
 						<h3>Vos coordonnées</h3>
-						<div class="form-group col-10">
+						<!-- <p id="messageUser"><span></span></p> -->
+						<div class="form-group col-10 mt-5">
 							<label for="prenom">Prénom :</label>
-							<input type="text" class="form-control card mb-3" id="prenom">
+							<input type="text" class="form-control card mb-3" name="prenom" id="prenom">
+							<span id="prenom_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="nom">Nom :</label>
-							<input type="text" class="form-control card mb-3" id="nom">
+							<input type="text" class="form-control card mb-3" name="nom" id="nom">
+							<span id="nom_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="adresse">Adresse :</label>
-							<input type="text" class="form-control card mb-3" id="adresse">
+							<input type="text" class="form-control card mb-3" name="adresse" id="adresse">
+							<span id="adresse_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="ville">Ville :</label>
-							<input type="text" class="form-control card mb-3" id="ville">
+							<input type="text" class="form-control card mb-3" name="ville" id="ville">
+							<span id="ville_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="email">Email :</label>
-							<input type="email" class="form-control card mb-3" id="email">
+							<input type="email" class="form-control card mb-3" name="email" id="email">
+							<span id="email_manquant"></span>
 						</div>
 						<div class="form-group col-10">
-							<input class="btn btn-warning mt-4 mb-5 col-4 col-md-8 col-lg-12" type="submit"
-								value="Confirmer votre achat">
+							<input id="myButton" class="btn btn-warning mt-4 mb-5 col-4 col-md-8 col-lg-12"
+								name="myButton" type="submit" value="Confirmer votre achat">
 						</div>
 					</form>
 
@@ -95,28 +101,30 @@
 					<div class="col-12 col-md-6 col-lg-8">
 
 						<h3>Votre commande</h3>
-						<table class="table table-bordered">
-							<thead>
-								<tr class="text-nowrap">
-									<th>Produit</th>
-									<th>modèle</th>
-									<th>lentille</th>
-									<th>prix</th>
-									<th>quantité</th>
-									<th>Sous-total</th>
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr class="text-nowrap">
+										<th>Produit</th>
+										<th>modèle</th>
+										<th>lentille</th>
+										<th>prix</th>
+										<th>quantité</th>
+										<th>Sous-total</th>
+									</tr>
+								</thead>
+								<tbody id="wrapper"></tbody>
+								<tfoot></tfoot>
+							</table>
+						</div>
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<tr>
+									<td class="sum">Total :</td>
+									<td id="total"></td>
 								</tr>
-							</thead>
-							<tbody id="wrapper"></tbody>
-							<tfoot></tfoot>
-						</table>
-
-						<table class="table table-bordered">
-							<tr>
-								<td class="sum">Total :</td>
-								<td id="total"></td>
-							</tr>
-						</table>
-
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
