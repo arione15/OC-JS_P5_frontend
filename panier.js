@@ -11,10 +11,16 @@ console.log(panierLengthParId) // donne le nombre d'id différents (voir le setI
 
 for (let i = 0; i < panierLengthParId; i++) {
     let id = localStorage.key(i) /* Récupère les id car le key de notre localStorage est id */
-    let valuesId = JSON.parse(localStorage.getItem(id)) // récupère la VALUE correspondante à la KEY id : ici la VALUE est un tableau contenant les couples id/lentille (voir localStorage.setItem)
-    console.log(valuesId);
+    let valuesId = JSON.parse(localStorage.getItem(id)) // récupère la VALUE correspondante à la KEY id : ici la VALUE est un tableau ?? contenant les lentilles (voir localStorage.setItem)
+
+    // console.log(valuesId);
+    // console.log(typeof(valuesId));
+
     values.push(valuesId)
+
     console.log(values)
+     //console.log(typeof(values)); // objet !! tableau de tableaux
+
     quantite.push(valuesId.length)
 
     fetch(`http://localhost:3000/api/cameras/${id}`) // car besoin des infos de l'api pour, UIQUEMENT, l'image, le descriptif et le prix !!!
@@ -25,7 +31,8 @@ for (let i = 0; i < panierLengthParId; i++) {
         .then(respJson => {
             console.log(respJson) // affiche les infos de chaque respJson donc ici de chaque id un par un pas comme lorsqu'on utilise push 
             panier.push(respJson) //stocker les réponses dans la liste "panier"
-            console.log(panier) // affiche les infos de tout les id (boucle sur i complète)
+           console.log(panier) // affiche les infos de tout les id (boucle sur i complète)
+           // console.log(typeof(panier)) // objet
 
             products.push(id) //
             console.log(products) // affiche les infos de tout le products (boucle sur i complète)
@@ -35,9 +42,9 @@ for (let i = 0; i < panierLengthParId; i++) {
             const elementParent = document.querySelector('#wrapper')
             const elementTotal = document.querySelector('#total')
 
-            output += panier.map((camera, x) => {
+            output += panier.map((camera, x) => { // je mape sur les differents id donc les differentes cameras. si j'ai 3 id donc 3 modeles de cameras differents, alors x =0,1,2. Question : map s'applique sur des array mais içi panier n'est pas un tableau ?!!
                 return (`
-                    <tr>
+                    <tr class="ligneCommande">
                     <td id="photoUnitaire"><a href="details.html?id=${camera._id}"><img src="${camera.imageUrl}" alt="#" class="card-img-top">
                     </a></td>
                     <td id="modele">${camera.name}</td>
@@ -45,17 +52,42 @@ for (let i = 0; i < panierLengthParId; i++) {
                     <td id="prixUnitaire">${camera.price/100}</td>
                     <td id="quantite">${quantite[x]}</td>
                     <td id="sousTotal">${quantite[x] * camera.price/100}</td>
+                    <td class="text-center">
+                    <button class="btn-del btn btn-danger">
+                    <i class="fas fa-trash-alt"></i>
+                    </button>  
+                    </td>
                     </tr>
                     `)
             })
-
+         
             sousTotal = panier.map((camera,x) => camera.price * quantite[x])
             total = sousTotal.reduce((acc, curr) => acc + curr)
             elementParent.innerHTML = output
             elementTotal.innerHTML = total/100 + " €"
         })
 }
+let myArticle = document.querySelector(".ligneCommande");
+let sousTotalArticle = document.querySelector("#sousTotal").innerHTML
+let boutonSupprime = document.querySelector(".btn-del")
+boutonSupprime.addEventListener("click", supprimerArticle)
 
+//    if(document.querySelector("#sousTotal") != null){
+//                 let sousTotalArticle = document.querySelector("#sousTotal").innerHTML
+//             }   
+function supprimerArticle() {
+    myArticle.remove()
+    calculer();
+}
+function calculer(){
+
+total = total-sousTotalArticle
+console.log(total)
+//   sousTotal = panier.map((camera,x) => camera.price * quantite[x])
+//   total = sousTotal.reduce((acc, curr) => acc + curr)
+//   elementParent.innerHTML = output
+//   elementTotal.innerHTML = total/100 + " €"
+}
 //Envoyer le formulaire de confirmation
 const myFormElement = document.getElementById("myForm")
 myFormElement.addEventListener("submit", Confirmer) //ajouter un event listener pour le formulaire
@@ -65,11 +97,20 @@ console.log(50)
 function Confirmer(e) {
     e.preventDefault() //utiliser toujours cette fonction avec les formulaires pour empecher le navigateur de recharger la page lors de l'envoi du formulaire
     //obtenir les données du formulaire
-    let firstName = document.getElementById("prenom").value
-    let lastName = document.getElementById("nom").value
-    let city = document.getElementById("ville").value
-    let address = document.getElementById("adresse").value
-    let email = document.getElementById("email").value
+    let firstName = "" // on initialise les champs à "" pour vaoir des champs vide à chaque nouvelle soumission du formulaire
+    firstName = document.getElementById("prenom").value
+
+    let lastName = ""
+    lastName = document.getElementById("nom").value
+
+    let city = ""
+    city = document.getElementById("ville").value
+
+    let address = ""
+    address = document.getElementById("adresse").value
+
+    let email = ""
+    email = document.getElementById("email").value
     
     //let prenomElement = document.getElementById("prenom")
     let prenom_m = document.getElementById("prenom_manquant")
@@ -90,22 +131,26 @@ function Confirmer(e) {
     if (firstName === ""){
         prenom_m.innerHTML="Veuillez renseigner le Prénom !"
         prenom_m.style.color = "red"
-    } else if (lastName === ""){
+    }
+    if (lastName === ""){
         nom_m.innerHTML="Veuillez renseigner le Nom !"
         nom_m.style.color = "red"
-    } else if(address === "") {
+    }
+    if(address === "") {
         adress_m.innerHTML="Veuillez renseigner l'adresse !"
         adress_m.style.color = "red"
-    }else if (city === "") {
+    }
+    if (city === "") {
         city_m.innerHTML="Veuillez renseigner la ville !"
         city_m.style.color = "red"
-    } else if(email === "" || email.match(regex) === null) {
+    }
+    if(email === "" || email.match(regex) === null) {
         email_m.innerHTML="Veuillez renseigner une adresse mail valide !"
         email_m.style.color = "red"
-    } else {
+    }
+    else {
         firstName.trim()
         lastName.trim()
-        console.log(200)
     //créer l'objet "contact" contenant les données du formulaire
     let contact = {
         firstName,
@@ -134,8 +179,7 @@ function Confirmer(e) {
 
             //redériger l'utilisateur vers la page "confirmation.html" après la confirmation de la commande
             window.location = "confirmation.html"
-            // var adresseActuelle = window.location;
-            // window.location = nouvelleAdresse;
+            // var adresseActuelle = window.location; // window.location = nouvelleAdresse;
         })
         .catch(err => console.log(err))
     }
