@@ -53,7 +53,8 @@ for (let i = 0; i < panierLengthParId; i++) {
                     <td id="quantite">${quantite[x]}</td>
                     <td id="sousTotal">${quantite[x] * camera.price/100}</td>
                     <td class="text-center">
-                    <button class="btn-del btn btn-danger">
+                    <button class="btn-del btn btn-danger onclick="supprimerArticle('${camera._id}')">
+                
                     <i class="fas fa-trash-alt"></i>
                     </button>  
                     </td>
@@ -65,29 +66,31 @@ for (let i = 0; i < panierLengthParId; i++) {
             total = sousTotal.reduce((acc, curr) => acc + curr)
             elementParent.innerHTML = output
             elementTotal.innerHTML = total/100 + " €"
-        })
-}
-let myArticle = document.querySelector(".ligneCommande");
-let sousTotalArticle = document.querySelector("#sousTotal").innerHTML
-let boutonSupprime = document.querySelector(".btn-del")
-boutonSupprime.addEventListener("click", supprimerArticle)
+
+
+
+            let myArticle = document.querySelector(".ligneCommande");
+            let sousTotalArticle = document.querySelector("#sousTotal").innerHTML
+            let boutonSupprime = document.querySelector(".btn-del")
+           // boutonSupprime.addEventListener("click", supprimerArticle)
 
 //    if(document.querySelector("#sousTotal") != null){
 //                 let sousTotalArticle = document.querySelector("#sousTotal").innerHTML
 //             }   
-function supprimerArticle() {
-    myArticle.remove()
-    calculer();
+function supprimerArticle(id) {
+    for (var i in panier) {
+        if (panier[i]._id === id) {
+            panier.splice(i, 1);
+            localStorage.removeItem(id);
+            console.log(panier);
+        }
+    }
 }
-function calculer(){
+                })
+}
 
-total = total-sousTotalArticle
-console.log(total)
-//   sousTotal = panier.map((camera,x) => camera.price * quantite[x])
-//   total = sousTotal.reduce((acc, curr) => acc + curr)
-//   elementParent.innerHTML = output
-//   elementTotal.innerHTML = total/100 + " €"
-}
+
+
 //Envoyer le formulaire de confirmation
 const myFormElement = document.getElementById("myForm")
 myFormElement.addEventListener("submit", Confirmer) //ajouter un event listener pour le formulaire
@@ -151,6 +154,7 @@ function Confirmer(e) {
     else {
         firstName.trim()
         lastName.trim()
+        
     //créer l'objet "contact" contenant les données du formulaire
     let contact = {
         firstName,
@@ -184,5 +188,3 @@ function Confirmer(e) {
         .catch(err => console.log(err))
     }
 }
-
-
