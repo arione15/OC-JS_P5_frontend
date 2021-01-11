@@ -2,7 +2,7 @@ let panier = [] //contient les infos correspondant à l'id de la camera ajoutée
 let products = [] //contient les couples id/lentille (défini par cameraAdded) des cameras selelctionnées.
 let sousTotal = []
 let total = 0
-let quantite = []
+var quantite = []
 let values = []
 
 /** Parcourir tous les couples identifiant/lentille stockés dans le navigateur */
@@ -11,28 +11,19 @@ console.log(panierLengthParId) // donne le nombre d'id différents (voir le setI
 
 for (let i = 0; i < panierLengthParId; i++) {
     let id = localStorage.key(i) /* Récupère les id car le key de notre localStorage est id */
-    let valuesId = JSON.parse(localStorage.getItem(id)) // récupère la VALUE correspondante à la KEY id : ici la VALUE est un tableau ?? contenant les lentilles (voir localStorage.setItem)
-
-    // console.log(valuesId);
-    // console.log(typeof(valuesId));
+    let valuesId = JSON.parse(localStorage.getItem(id)) // récupère la VALUE correspondante à la KEY id : ici la VALUE est un tableau ?? contenant les lentilles
 
     values.push(valuesId)
-
-    console.log(values)
-     //console.log(typeof(values)); // objet !! tableau de tableaux
-
     quantite.push(valuesId.length)
 
     fetch(`http://localhost:3000/api/cameras/${id}`) // car besoin des infos de l'api pour, UIQUEMENT, l'image, le descriptif et le prix !!!
         .then(resp => {
-            //console.log(resp)
             return resp.json()
         })
         .then(respJson => {
             console.log(respJson) // affiche les infos de chaque respJson donc ici de chaque id un par un pas comme lorsqu'on utilise push 
             panier.push(respJson) //stocker les réponses dans la liste "panier"
-           console.log(panier) // affiche les infos de tout les id (boucle sur i complète)
-           // console.log(typeof(panier)) // objet
+            console.log(panier) // affiche les infos de tout les id (boucle sur i complète)
 
             products.push(id) //
             console.log(products) // affiche les infos de tout le products (boucle sur i complète)
@@ -40,61 +31,70 @@ for (let i = 0; i < panierLengthParId; i++) {
 
             let output = ''
             const elementParent = document.querySelector('#wrapper')
-            const elementTotal = document.querySelector('#total')
+            var elementTotal = document.getElementById('total')
 
             output += panier.map((camera, x) => { // je mape sur les differents id donc les differentes cameras. si j'ai 3 id donc 3 modeles de cameras differents, alors x =0,1,2. Question : map s'applique sur des array mais içi panier n'est pas un tableau ?!!
                 return (`
-                    <tr class="ligneCommande">
+                    <tr id=${camera._id}>
                     <td id="photoUnitaire"><a href="details.html?id=${camera._id}"><img src="${camera.imageUrl}" alt="#" class="card-img-top">
                     </a></td>
                     <td id="modele">${camera.name}</td>
                     <td id="lentilleUnitaire">${values[x]}</td>
-                    <td id="prixUnitaire">${camera.price/100}</td>
+                    <td id="prixUnitaire">${camera.price / 100}</td>
                     <td id="quantite">${quantite[x]}</td>
-                    <td id="sousTotal">${quantite[x] * camera.price/100}</td>
+                    <td id="sousTotal">${quantite[x] * camera.price / 100}</td>
                     <td class="text-center">
-                    <button class="btn-del btn btn-danger onclick="supprimerArticle('${camera._id}')">
-                
+                    <button class="btn-del btn btn-danger" onclick="supprimerArticle('${camera._id}')">
                     <i class="fas fa-trash-alt"></i>
                     </button>  
                     </td>
                     </tr>
                     `)
             })
-         
-            sousTotal = panier.map((camera,x) => camera.price * quantite[x])
+
+            sousTotal = panier.map((camera, x) => camera.price * quantite[x])
             total = sousTotal.reduce((acc, curr) => acc + curr)
             elementParent.innerHTML = output
-            elementTotal.innerHTML = total/100 + " €"
+            elementTotal.innerHTML = total / 100 + " €"
+        })
+}
 
+let sousTotalArticle = document.querySelector(".sousTotal").innerHTML
+let boutonSupprime = document.querySelector(".btn-del")
 
-
-            let myArticle = document.querySelector(".ligneCommande");
-            let sousTotalArticle = document.querySelector("#sousTotal").innerHTML
-            let boutonSupprime = document.querySelector(".btn-del")
-           // boutonSupprime.addEventListener("click", supprimerArticle)
-
-//    if(document.querySelector("#sousTotal") != null){
-//                 let sousTotalArticle = document.querySelector("#sousTotal").innerHTML
-//             }   
 function supprimerArticle(id) {
-    for (var i in panier) {
+    let myArticle = document.getElementById(id);
+    let elementTotal = document.getElementById('total')
+
+    for (let i = 0; i < panier.length; i++) {
         if (panier[i]._id === id) {
-            panier.splice(i, 1);
-            localStorage.removeItem(id);
-            console.log(panier);
+            quantite.splice(i, 1)
+            panier.splice(i, 1)
+            if (panier.length > 0) {
+                sousTotal = panier.map((camera, x) => camera.price * quantite[x])
+                total = sousTotal.reduce((acc, curr) => acc + curr)
+                console.log(total);
+                localStorage.removeItem(id)
+                myArticle.remove()
+                elementTotal.innerHTML = total / 100
+            }
+            else if (panier.length == 0) {
+                localStorage.removeItem(id)
+                myArticle.remove()
+                elementTotal.innerHTML = 0
+            }
         }
     }
 }
-                })
+
+function calculer() {
+    total = total - sousTotalArticle
+    console.log(total)
 }
-
-
 
 //Envoyer le formulaire de confirmation
 const myFormElement = document.getElementById("myForm")
 myFormElement.addEventListener("submit", Confirmer) //ajouter un event listener pour le formulaire
-console.log(50)
 
 // cette fonction permet d'envoyer le formulaire vers le serveur
 function Confirmer(e) {
@@ -114,7 +114,7 @@ function Confirmer(e) {
 
     let email = ""
     email = document.getElementById("email").value
-    
+
     //let prenomElement = document.getElementById("prenom")
     let prenom_m = document.getElementById("prenom_manquant")
 
@@ -131,60 +131,59 @@ function Confirmer(e) {
     let email_m = document.getElementById("email_manquant")
     let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
-    if (firstName === ""){
-        prenom_m.innerHTML="Veuillez renseigner le Prénom !"
+    if (firstName === "") {
+        prenom_m.innerHTML = "Veuillez renseigner le Prénom !"
         prenom_m.style.color = "red"
     }
-    if (lastName === ""){
-        nom_m.innerHTML="Veuillez renseigner le Nom !"
+    if (lastName === "") {
+        nom_m.innerHTML = "Veuillez renseigner le Nom !"
         nom_m.style.color = "red"
     }
-    if(address === "") {
-        adress_m.innerHTML="Veuillez renseigner l'adresse !"
+    if (address === "") {
+        adress_m.innerHTML = "Veuillez renseigner l'adresse !"
         adress_m.style.color = "red"
     }
     if (city === "") {
-        city_m.innerHTML="Veuillez renseigner la ville !"
+        city_m.innerHTML = "Veuillez renseigner la ville !"
         city_m.style.color = "red"
     }
-    if(email === "" || email.match(regex) === null) {
-        email_m.innerHTML="Veuillez renseigner une adresse mail valide !"
+    if (email === "" || email.match(regex) === null) {
+        email_m.innerHTML = "Veuillez renseigner une adresse mail valide !"
         email_m.style.color = "red"
     }
     else {
         firstName.trim()
         lastName.trim()
-        
-    //créer l'objet "contact" contenant les données du formulaire
-    let contact = {
-        firstName,
-        lastName,
-        address,
-        city,
-        email
-    }
+        //créer l'objet "contact" contenant les données du formulaire
+        let contact = {
+            firstName,
+            lastName,
+            address,
+            city,
+            email
+        }
 
-    //l'api doit envoyer l'objet "contact" et la liste "products" vers le serveur
-    fetch('http://localhost:3000/api/cameras/order', {
-        method: "POST",
-        headers: {
-            "Accept": 'application/json, text/plain, "/"',
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify({ contact, products })
-    })
-        .then(response => response.json())
-        .then(json => {
-            console.log(json)
-
-            //stocker les variables "orderId" et "total" pour les utiliser dans la page "confirmation.html" 
-            localStorage.setItem("orderId", json.orderId)
-            localStorage.setItem("total", total)
-
-            //redériger l'utilisateur vers la page "confirmation.html" après la confirmation de la commande
-            window.location = "confirmation.html"
-            // var adresseActuelle = window.location; // window.location = nouvelleAdresse;
+        //l'api doit envoyer l'objet "contact" et la liste "products" vers le serveur
+        fetch('http://localhost:3000/api/cameras/order', {
+            method: "POST",
+            headers: {
+                "Accept": 'application/json, text/plain, "/"',
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({ contact, products })
         })
-        .catch(err => console.log(err))
+            .then(response => response.json())
+            .then(json => {
+                console.log(json)
+
+                //stocker les variables "orderId" et "total" pour les utiliser dans la page "confirmation.html" 
+                localStorage.setItem("orderId", json.orderId)
+                localStorage.setItem("total", total)
+
+                //redériger l'utilisateur vers la page "confirmation.html" après la confirmation de la commande
+                window.location = "confirmation.html"
+                // var adresseActuelle = window.location; // window.location = nouvelleAdresse;
+            })
+            .catch(err => console.log(err))
     }
 }
