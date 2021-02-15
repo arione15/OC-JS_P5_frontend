@@ -105,10 +105,10 @@ function supprimerArticle(id) {
 
 //Envoyer le formulaire de confirmation
 const myFormElement = document.getElementById("myForm");
-myFormElement.addEventListener("submit", Confirmer); //ajouter un event listener pour le formulaire
+myFormElement.addEventListener("submit", confirmer); //ajouter un event listener pour le formulaire
 
 // cette fonction permet d'envoyer le formulaire vers le serveur
-function Confirmer(e) {
+function confirmer(e) {
     e.preventDefault(); //utiliser toujours cette fonction avec les formulaires pour empecher le navigateur de recharger la page lors de l'envoi du formulaire
     
     //obtenir les données du formulaire
@@ -142,28 +142,33 @@ function Confirmer(e) {
     //let emailElement = document.getElementById("nom")
     let email_m = document.getElementById("email_manquant");
     let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
+    let isFormOk = true;
     if (firstName === "") {
         prenom_m.innerHTML = "Veuillez renseigner le Prénom !";
         prenom_m.style.color = "red";
+        isFormOk = false;
     }
-    else if (lastName === "") {
+    if (lastName === "") {
         nom_m.innerHTML = "Veuillez renseigner le Nom !";
         nom_m.style.color = "red";
+        isFormOk = false;
     }
-    else if (address === "") {
+    if (address === "") {
         adress_m.innerHTML = "Veuillez renseigner l'adresse !";
         adress_m.style.color = "red";
+        isFormOk = false;
     }
-    else if (city === "") {
+    if (city === "") {
         city_m.innerHTML = "Veuillez renseigner la ville !";
         city_m.style.color = "red";
+        isFormOk = false;
     }
-    else if (email === "" || email.match(regex) === null) {
+    if (email === "" || email.match(regex) === null) {
         email_m.innerHTML = "Veuillez renseigner une adresse mail valide !";
         email_m.style.color = "red";
+        isFormOk = false;
     }
-    else {
+    if(isFormOk) {
         firstName.trim();
         lastName.trim();
         //créer l'objet "contact" contenant les données du formulaire
