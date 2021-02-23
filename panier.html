@@ -63,37 +63,36 @@
 		<main>
 			<div class="container">
 				<div class="row my-5 py-5">
-					<form id="myForm" class="col-12 col-md-6 col-lg-4">
+					<form novalidate id="myForm" class="col-12 col-md-6 col-lg-4">
 						<h3>Vos coordonnées</h3>
-						<!-- <p id="messageUser"><span></span></p> -->
 						<div class="form-group col-10 mt-5">
 							<label for="prenom">Prénom :</label>
-							<input type="text" class="form-control card mb-3" name="prenom" id="prenom">
+							<input type="text" class="form-control card mb-3" name="prenom" id="prenom" required>
 							<span id="prenom_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="nom">Nom :</label>
-							<input type="text" class="form-control card mb-3" name="nom" id="nom">
+							<input type="text" class="form-control card mb-3" name="nom" id="nom" required>
 							<span id="nom_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="adresse">Adresse :</label>
-							<input type="text" class="form-control card mb-3" name="adresse" id="adresse">
+							<input type="text" class="form-control card mb-3" name="adresse" id="adresse" required>
 							<span id="adresse_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="ville">Ville :</label>
-							<input type="text" class="form-control card mb-3" name="ville" id="ville">
+							<input type="text" class="form-control card mb-3" name="ville" id="ville" required>
 							<span id="ville_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="email">Email :</label>
-							<input class="form-control card mb-3" name="email" id="email">
-							<span id="email_manquant"></span>
+							<input type="email" class="form-control card mb-3" name="email" id="email" required>
+							<span id="email_manquant" class="errorMail" aria-live="polite"></span>
 						</div>
 						<div class="form-group col-10">
-							<input id="myButton" class="btn btn-warning mt-4 mb-5 col-4 col-md-8 col-lg-12"
-								name="myButton" type="submit" value="Confirmer votre achat">
+							<button id="myButton" class="btn btn-warning mt-4 mb-5 col-4 col-md-8 col-lg-12"
+								name="myButton" type="submit">Confirmer votre achat</button>
 						</div>
 					</form>
 
@@ -157,7 +156,7 @@
 			integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
 			crossorigin="anonymous"></script>
 		<!-- Custom JS -->
-		<script src="function.js" charset="utf-8"></script>
+		<script src="functions.js" charset="utf-8"></script>
 		<script src="panier.js" charset="utf-8"></script>
 
 	</body>
