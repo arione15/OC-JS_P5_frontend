@@ -5,3 +5,4 @@ document.querySelector("#orderId").innerHTML = "Identifiant de commande: " + ord
 document.querySelector("#total").innerHTML = "Total : " + total/100 + " €"
 
 localStorage.clear() //vider localStorage après avoir passé la commande
+
