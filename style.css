@@ -111,3 +111,11 @@ text-align: right;
 	text-align: right;
 
 }
+ /* styliser les champs de validation */
+ :valid {
+	box-shadow: 0 0 2px 1px green;
+ }
+
+ :invalid {
+	box-shadow: 0 0 2px 1px red;
+ }

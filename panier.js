@@ -117,15 +117,20 @@ let missEmail = document.getElementById('email_manquant');
 let mail = "";
 mail = document.getElementById('email').value;
 
-let isFormOk = true;
 let formValid = document.getElementById('myButton');
 formValid.addEventListener('click', valider);
 
-
+let isFormOk = true;
 
 function valider(e) {
     e.preventDefault();
-    if(myValidatorFunction(prenom) && myValidatorFunction(nom) && myValidatorFunction(adresse) && myValidatorFunction(ville) && myValidatorFunction(email)){
+    let validPrenom = myValidatorFunction(prenom);
+    let validNom = myValidatorFunction(nom);
+    let validAdresse = myValidatorFunction(adresse);
+    let validVille = myValidatorFunction(ville);
+    let validEmail = myValidatorFunction(email)
+
+    if(!validPrenom && !validNom && !validAdresse && !validVille && !validEmail){
         let contact = {
             firstName,
             lastName,
@@ -152,71 +157,13 @@ function valider(e) {
             })
             .catch(err => console.log(err));
     };
-
-    
-
-    // if (prenom.checkValidity()) {
-    //     //e.preventDefault();
-    //     //missPrenom.innerHTML = prenom.validationMessage;
-    //     isFormOk = true;
-    // };
-    // if (!nom.validity.checkValidity()) { //Validation du nom :
-    //     e.preventDefault();
-    //     isFormOk = false;
-    //     missNom.innerHTML = nom.validationMessage;
-    //     missNom.style.color = 'red';
-    // };
-    // if (!adresse.validity.checkValidity()) { //Validation de l'adresse :
-    //     e.preventDefault();
-    //     missAdresse.innerHTML = adresse.validationMessage;
-    //     missAdresse.style.color = 'red';
-    //     isFormOk = false;
-    // };
-    // if (!ville.validity.checkValidity()) { //Validation de la ville :
-    //     e.preventDefault();
-    //     missVille.innerHTML = ville.validationMessage;
-    //     missVille.style.color = 'red';
-    //     isFormOk = false;
-    // };
-    // if (!email.validity.checkValidity()) { //Validation de l'email :
-    //     e.preventDefault();
-    //     missEmail.innerHTML = email.validationMessage;
-    //     missEmail.style.color = 'red';
-    //     isFormOk = false;
-    // };
-    // if (isFormOk) {
-    //     let contact = {
-    //         firstName,
-    //         lastName,
-    //         address,
-    //         city,
-    //         mail
-    //     };
-    //     fetch('http://localhost:3000/api/cameras/order', { //l'api doit envoyer l'objet "contact" et la liste "products" vers le serveur
-    //             method: "POST",
-    //             headers: {
-    //                 "Accept": 'application/json, text/plain, "/"',
-    //                 "Content-type": "application/json"
-    //             },
-    //             body: JSON.stringify({
-    //                 contact,
-    //                 products
-    //             })
-    //         })
-    //         .then(response => response.json())
-    //         .then(json => {
-    //             localStorage.setItem("orderId", json.orderId);
-    //             localStorage.setItem("total", total);
-    //             window.location = "confirmation.html";
-    //         })
-    //         .catch(err => console.log(err));
-    // }
 }
 function myValidatorFunction(elt) {
-    //var elt = document.getElementById("id1");
-    if (elt.checkValidity()) {
-      document.elt.nextSibling.innerHTML = elt.validationMessage;
-    } else {
+    var myValid = elt.validity.patternMismatch;
+    if (myValid) {
         isFormOk = false;
-    } 
-  } 
+        elt.nextSibling.innerHTML = elt.validationMessage;
+        //return myValid;
+  }
+  return myValid;
+}
