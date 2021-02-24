@@ -1,15 +1,14 @@
-
 retrieveFromUrl(`http://localhost:3000/api/cameras`).then(respJson => {
-	let output = '';
-	const elementParent = document.querySelector('#wrapper');
-	respJson.forEach(camera => {
-		output += createCameraBlock(camera);
+		let output = '';
+		const elementParent = document.querySelector('#wrapper');
+		respJson.forEach(camera => {
+			output += createCameraBlock(camera);
+		})
+		elementParent.innerHTML = output;
 	})
-	elementParent.innerHTML = output;
-})
-.catch(err => console.log('Request Failed', err));;
+	.catch(err => console.log('Request Failed', err));
 
-function createCameraBlock(camera){
+function createCameraBlock(camera) {
 	return `
 			<td class="card col-8 col-md-5 col-lg-3 m-3"><a href="details.html?id=${camera._id}"><img src="${camera.imageUrl}" alt="#"
 				class="card-img-top rounded-pill p-1"></a>

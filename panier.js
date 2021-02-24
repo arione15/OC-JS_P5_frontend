@@ -92,77 +92,40 @@ function supprimerArticle(id) {
 }
 
 /* ************* Envoyer le formulaire de confirmation ************* */
-const formValid = document.getElementById('myButton');
+let prenom = document.getElementById('prenom');
+let missPrenom = document.getElementById('prenom_manquant');
+let firstName = "";
+firstName = document.getElementById('prenom').value;
+
+let nom = document.getElementById('nom');
+let missNom = document.getElementById('nom_manquant');
+let lastName = "";
+lastName = document.getElementById('nom').value;
+
+let adresse = document.getElementById('adresse');
+let missAdresse = document.getElementById('adresse_manquant');
+let address = "";
+address = document.getElementById('adresse').value;
+
+let ville = document.getElementById('ville');
+let missVille = document.getElementById('ville_manquant');
+let city = "";
+city = document.getElementById('ville').value;
+
+let email = document.getElementById('email');
+let missEmail = document.getElementById('email_manquant');
+let mail = "";
+mail = document.getElementById('email').value;
+
+let isFormOk = true;
+let formValid = document.getElementById('myButton');
 formValid.addEventListener('click', valider);
 
-// fonction valider() : permet d'envoyer le formulaire vers le serveur après vérification
+
+
 function valider(e) {
-    let prenom = document.getElementById('prenom');
-    let missPrenom = document.getElementById('prenom_manquant');
-    let firstName = document.getElementById('prenom').value;
-
-    let nom = document.getElementById('nom');
-    let missNom = document.getElementById('nom_manquant');
-    let lastName = document.getElementById('nom').value;
-
-    let adresse = document.getElementById('adresse');
-    let missAdresse = document.getElementById('adresse_manquant');
-    let address = document.getElementById('adresse').value;
-
-    let ville = document.getElementById('ville');
-    let missVille = document.getElementById('ville_manquant');
-    let city = document.getElementById('ville').value;
-
-    let email = document.getElementById('email');
-    let missEmail = document.getElementById('email_manquant');
-    let mail = document.getElementById('email').value;
-
-    let isFormOk = true;
-
-
-    //Validation du prénom :
-    if (!prenom.validity.patternMismatch) {
-        e.preventDefault();
-        missPrenom.innerHTML = prenom.validationMessage;
-        missPrenom.style.color = 'red';
-        isFormOk = false;
-        var validityState = prenom.validity;
-        console.log(validityState);
-    }
-
-    //Validation du nom :
-    if (!nom.validity.patternMismatch) {
-        e.preventDefault();
-        missNom.innerHTML = nom.validationMessage;
-        missNom.style.color = 'red';
-        isFormOk = false;
-    }
-
-    //Validation de l'adresse :
-    if (!adresse.validity.patternMismatch) {
-        e.preventDefault();
-        missAdresse.innerHTML = adresse.validationMessage;
-        missAdresse.style.color = 'red';
-        isFormOk = false;
-    }
-
-    //Validation de la ville :
-    if (!ville.validity.patternMismatch) {
-        e.preventDefault();
-        missVille.innerHTML = ville.validationMessage;
-        missVille.style.color = 'red';
-        isFormOk = false;
-    }
-
-    //Validation de l'email :
-    if (!email.validity.patternMismatch) {
-        e.preventDefault();
-        missEmail.innerHTML = email.validationMessage;
-        missEmail.style.color = 'red';
-        isFormOk = false;
-    }
-
-    if (isFormOk) {
+    e.preventDefault();
+    if(myValidatorFunction(prenom) && myValidatorFunction(nom) && myValidatorFunction(adresse) && myValidatorFunction(ville) && myValidatorFunction(email)){
         let contact = {
             firstName,
             lastName,
@@ -170,10 +133,7 @@ function valider(e) {
             city,
             mail
         };
-        console.log(contact, products);
-
-        //l'api doit envoyer l'objet "contact" et la liste "products" vers le serveur
-        fetch('http://localhost:3000/api/cameras/order', {
+        fetch('http://localhost:3000/api/cameras/order', { //l'api doit envoyer l'objet "contact" et la liste "products" vers le serveur
                 method: "POST",
                 headers: {
                     "Accept": 'application/json, text/plain, "/"',
@@ -186,11 +146,77 @@ function valider(e) {
             })
             .then(response => response.json())
             .then(json => {
-                console.log(json);
                 localStorage.setItem("orderId", json.orderId);
                 localStorage.setItem("total", total);
                 window.location = "confirmation.html";
             })
             .catch(err => console.log(err));
-    }
+    };
+
+    
+
+    // if (prenom.checkValidity()) {
+    //     //e.preventDefault();
+    //     //missPrenom.innerHTML = prenom.validationMessage;
+    //     isFormOk = true;
+    // };
+    // if (!nom.validity.checkValidity()) { //Validation du nom :
+    //     e.preventDefault();
+    //     isFormOk = false;
+    //     missNom.innerHTML = nom.validationMessage;
+    //     missNom.style.color = 'red';
+    // };
+    // if (!adresse.validity.checkValidity()) { //Validation de l'adresse :
+    //     e.preventDefault();
+    //     missAdresse.innerHTML = adresse.validationMessage;
+    //     missAdresse.style.color = 'red';
+    //     isFormOk = false;
+    // };
+    // if (!ville.validity.checkValidity()) { //Validation de la ville :
+    //     e.preventDefault();
+    //     missVille.innerHTML = ville.validationMessage;
+    //     missVille.style.color = 'red';
+    //     isFormOk = false;
+    // };
+    // if (!email.validity.checkValidity()) { //Validation de l'email :
+    //     e.preventDefault();
+    //     missEmail.innerHTML = email.validationMessage;
+    //     missEmail.style.color = 'red';
+    //     isFormOk = false;
+    // };
+    // if (isFormOk) {
+    //     let contact = {
+    //         firstName,
+    //         lastName,
+    //         address,
+    //         city,
+    //         mail
+    //     };
+    //     fetch('http://localhost:3000/api/cameras/order', { //l'api doit envoyer l'objet "contact" et la liste "products" vers le serveur
+    //             method: "POST",
+    //             headers: {
+    //                 "Accept": 'application/json, text/plain, "/"',
+    //                 "Content-type": "application/json"
+    //             },
+    //             body: JSON.stringify({
+    //                 contact,
+    //                 products
+    //             })
+    //         })
+    //         .then(response => response.json())
+    //         .then(json => {
+    //             localStorage.setItem("orderId", json.orderId);
+    //             localStorage.setItem("total", total);
+    //             window.location = "confirmation.html";
+    //         })
+    //         .catch(err => console.log(err));
+    // }
 }
+function myValidatorFunction(elt) {
+    //var elt = document.getElementById("id1");
+    if (elt.checkValidity()) {
+      document.elt.nextSibling.innerHTML = elt.validationMessage;
+    } else {
+        isFormOk = false;
+    } 
+  } 
