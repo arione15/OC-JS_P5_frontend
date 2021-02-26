@@ -67,23 +67,23 @@
 						<h3>Vos coordonnées</h3>
 						<div class="form-group col-10 mt-5">
 							<label for="prenom">Prénom :</label>
-							<input type="text" class="form-control card mb-3" name="prenom" id="prenom" pattern="^[a-zA-Z]{3,8}$" required><span id="prenom_manquant"></span>
+							<input type="text" class="form-control card mb-3" name="prenom" id="prenom" pattern="^(?:[a-zA-Z]{3,8})$" required><span id="prenom_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="nom">Nom :</label>
-							<input type="text" class="form-control card mb-3" name="nom" id="nom" pattern="^[a-zA-Z]{3,8}$" required><span id="nom_manquant"></span>
+							<input type="text" class="form-control card mb-3" name="nom" id="nom" pattern="^(?:[a-zA-Z]{3,8})$" required><span id="nom_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="adresse">Adresse :</label>
-							<input type="text" class="form-control card mb-3" name="adresse" id="adresse" pattern="^[#.0-9a-zA-Z\s,-]+$" required><span id="adresse_manquant"></span>
+							<input type="text" class="form-control card mb-3" name="adresse" id="adresse" pattern="^(?:[#.0-9a-zA-Z\s,-]+)$" required><span id="adresse_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="ville">Ville :</label>
-							<input type="text" class="form-control card mb-3" name="ville" id="ville" pattern="^[a-zA-Z]{3,8}$" required><span id="ville_manquant"></span>
+							<input type="text" class="form-control card mb-3" name="ville" id="ville" pattern="^(?:[a-zA-Z]{3,8})$" required><span id="ville_manquant"></span>
 						</div>
 						<div class="form-group col-10">
 							<label for="email">Email :</label>
-							<input type="email" class="form-control card mb-3" name="email" id="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><span id="email_manquant" class="errorMail" aria-live="polite"></span>
+							<input type="email" class="form-control card mb-3" name="email" id="email" pattern="^(?:[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,})$" required><span id="email_manquant" class="errorMail" aria-live="polite"></span>
 						</div>
 						<div class="form-group col-10">
 							<input id="myButton" class="btn btn-warning mt-4 mb-5 col-4 col-md-8 col-lg-12"
