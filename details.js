@@ -56,7 +56,7 @@ function displayElement(camera) {
 }
 
 function addListeners() { // ca évite de mettre un onclick dans le input type submit
-    document.getElementById("addToCart").addEventListener('click', (e) => {
+    document.getElementById("addToCart").addEventListener('click', () => {
         add(getParamFromUrl('id'))
     })
 }

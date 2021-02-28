@@ -35,9 +35,9 @@ for (let i = 0; i < cart.length; i++) {
             jsonData.push(respJson);
             cart.push(respJson); //stocker les réponses dans la liste "cart"
             products.push(id); //
-            let output = ''
-            const elementParent = document.querySelector('#wrapper')
-            let elementTotal = document.getElementById('total')
+            let output = '';
+            const elementParent = document.querySelector('#wrapper');
+            let elementTotal = document.getElementById('total');
             output += jsonData.map((camera, x) => { // je mape sur les differents id donc les differentes cameras. si j'ai 3 id donc 3 modeles de cameras differents, alors x =0,1,2.
                 return (`
                     <tr id=${camera._id}>
@@ -171,7 +171,6 @@ function valider(e) {
             })
             .then(response => response.json())
             .then(json => {
-                console.log(json);
                 localStorage.setItem("orderId", json.orderId);
                 localStorage.setItem("total", total);
                 window.location = "confirmation.html";
